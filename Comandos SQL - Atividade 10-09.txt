@@ -1,0 +1,65 @@
+Comandos SQL
+
+O script de “execução” da tarefa 4
+
+-- Atualiza o status do usuário com id 3 para 'inativo'
+UPDATE Usuario
+SET status = 'inativo'
+WHERE id_usuario = 3;
+
+Isso lista todos os usuários que nunca fizeram empréstimos:
+SELECT *
+FROM Usuario
+WHERE id_usuario NOT IN (
+    SELECT DISTINCT id_usuario
+    FROM Emprestimo
+);
+
+
+Comando para excluir:
+DELETE FROM Usuario
+WHERE id_usuario NOT IN (
+    SELECT DISTINCT id_usuario
+    FROM Emprestimo
+);
+
+O script de “execução” da tarefa 5
+
+Consultar todos os empréstimos ativos
+SELECT *
+FROM Emprestimo
+WHERE status = 'ativo';
+
+Consultar livros de uma determinada categoria
+SELECT *
+FROM Livro
+WHERE categoria = 'Romance';
+
+Consultar usuários cadastrados em um período específico
+SELECT *
+FROM Usuario
+WHERE data_cadastro BETWEEN '2025-09-09' AND '2025-09-09';
+
+O script de “execução” da tarefa 6
+
+Contar quantos livros existem cadastrados (COUNT)
+SELECT COUNT(*) AS total_livros
+FROM Livro;
+
+Calcular a quantidade total de livros emprestados (SUM)
+SELECT SUM(quantidade) AS total_emprestado
+FROM Itens_Emprestimo;
+
+Calcular a média de livros por categoria (AVG)
+SELECT categoria, AVG(quantidade) AS media_por_categoria
+FROM Livro
+GROUP BY categoria;
+
+Encontrar o ano mais antigo e o mais recente de publicação (MIN / MAX)
+SELECT MIN(ano_publicacao) AS ano_mais_antigo,
+       MAX(ano_publicacao) AS ano_mais_recente
+FROM Livro;
+
+
+
+

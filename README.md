@@ -19,4 +19,8 @@ Explorar, praticar e consolidar os fundamentos da criação e manipulação de *
 - **MySQL Workbench 8.0**  
 - **Bloco de Notas (arquivos .txt)** para organização dos scripts  
 
+## 🔗 Material da disciplina
+O conteúdo teórico e os materiais de apoio estão sendo disponibilizados no Notion, no seguinte link:  
+👉 [Banco de Dados – Notion](https://amused-limpet-3f8.notion.site/Banco-de-Dados-24589db569608097940ac7c24a6c44aa)
+
 ---

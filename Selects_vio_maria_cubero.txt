@@ -1,0 +1,65 @@
+Consultar todos os usuários:
+SELECT * FROM usuario;
+
+Consultar todos os organizadores:
+SELECT * FROM organizador;
+
+Consultar todos os eventos:
+SELECT * FROM evento;
+
+Consultar todos os ingressos:
+SELECT * FROM ingresso;
+
+Consultar todas as compras:
+SELECT * FROM compra;
+
+Consultar todos os ingressos comprados (ingresso_compra):
+SELECT * FROM ingresso_compra;
+
+Consultar todas as presenças:
+SELECT * FROM presenca;
+
+Usuários nascidos entre 1990 e 1995:
+SELECT *
+FROM usuario
+WHERE data_nascimento BETWEEN '1990-01-01' AND '1995-12-31'
+ORDER BY data_nascimento ASC;
+
+Eventos organizados por “Festivais BR”:
+SELECT e.nome AS evento, e.data_evento AS data_realizacao
+FROM evento e
+JOIN organizador o ON e.id_organizador = o.id
+WHERE o.nome = 'Festivais BR';
+
+Idade dos usuários (cálculo com timestampdiff):
+SELECT 
+    id,
+    nome,
+    email,
+    senha,
+    telefone,
+    data_nascimento,
+    TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) AS idade
+FROM usuario;
+
+Ingressos comprados por evento e tipo (opcional, se quiser mostrar os relacionamentos):
+SELECT u.nome AS usuario, e.nome AS evento, i.tipo AS ingresso, ic.quantidade
+FROM ingresso_compra ic
+JOIN compra c ON ic.id_compra = c.id
+JOIN usuario u ON c.id_usuario = u.id
+JOIN ingresso i ON ic.id_ingresso = i.id
+JOIN evento e ON i.id_evento = e.id;
+
+Ingressos do evento “Show Internacional” com preços atualizados:
+SELECT i.tipo, i.preco
+FROM ingresso i
+JOIN evento e ON i.id_evento = e.id
+WHERE e.nome = 'Show Internacional';
+
+Organizadores com emails @xyz.com (para conferir atualização de telefone):
+SELECT * FROM organizador
+WHERE email LIKE '%@xyz.com';
+
+Ingressos de evento cancelado (para verificar exclusão):
+SELECT * FROM ingresso
+WHERE id_evento = 2;  -- se id 2 era "Congresso de Tecnologia"
